@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>CO2 Savings Calculator</h2>
+<div class="mb-3">
+  <label class="form-label">Miles driven per week</label>
+  <input id="miles" type="number" class="form-control" value="100">
+</div>
+<button class="btn btn-success" onclick="calculateCO2()">Calculate</button>
+<div id="co2-result" class="mt-3"></div>
+{% endblock %}

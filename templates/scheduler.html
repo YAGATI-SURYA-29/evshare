@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Schedule a Charging Session</h2>
+<form id="scheduler-form">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Vehicle</label>
+      <input class="form-control" name="vehicle">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Plug type</label>
+      <select class="form-select" name="plug">
+        <option>Type 2</option>
+        <option>CHAdeMO</option>
+        <option>CCS</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-success" type="button" onclick="generatePdf()">Book & Export PDF</button>
+</form>
+<hr>
+<table class="table table-striped" id="results-table">
+  <thead><tr><th>Station</th><th>Time</th><th>Status</th></tr></thead>
+  <tbody></tbody>
+</table>
+{% endblock %}

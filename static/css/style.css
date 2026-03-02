@@ -1,0 +1,6 @@
+:root{--brand:#1fa36c;--accent:#0b5;}
+body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:#f7fff9;color:#073b2f}
+.navbar-brand{color:var(--brand)!important}
+.btn-success{background:var(--brand);border-color:var(--brand)}
+.table thead{background:rgba(31,163,108,0.08)}
+@media(max-width:576px){.container{padding:0 0.5rem}#map{height:60vh}}

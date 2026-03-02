@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Find a Station</h2>
+<div id="map" style="height:70vh; width:100%;"></div>
+<script>
+  // leaflet initialization handled in static/js/leaflet.js
+  initEvshareMap('map');
+</script>
+{% endblock %}
