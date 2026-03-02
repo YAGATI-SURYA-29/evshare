@@ -1,24 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="p-5 mb-4 bg-success text-white rounded-3">
+<div class="p-5 mb-4 bg-success text-white rounded-3 hero">
   <div class="container-fluid py-5">
-    <h1 class="display-5 fw-bold">EVShare — Share the Charge</h1>
-    <p class="lead">Find chargers, schedule sessions, and track your savings.</p>
-    <a class="btn btn-light btn-lg" href="/find">Find a Station</a>
+    <h1 class="display-5 fw-bold animate-fade-in">EVShare — Share the Charge</h1>
+    <p class="lead animate-fade-in-delayed">Find chargers, schedule sessions, and track your savings.</p>
+    <a class="btn btn-light btn-lg btn-animate" href="/find">Find a Station</a>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-4">
-    <h3>Fast Charging</h3>
-    <p>Guides and best practices.</p>
+<div class="row mt-5">
+  <div class="col-md-4 mb-4">
+    <a href="/fast_charge" class="text-decoration-none">
+      <div class="card feature-card h-100 shadow-sm hover-lift">
+        <div class="card-body text-center">
+          <div class="feature-icon mb-3">⚡</div>
+          <h3>Fast Charging</h3>
+          <p class="text-muted">Guides and best practices.</p>
+        </div>
+      </div>
+    </a>
   </div>
-  <div class="col-md-4">
-    <h3>Scheduler</h3>
-    <p>Plan your charging and export receipts.</p>
+  <div class="col-md-4 mb-4">
+    <a href="/scheduler" class="text-decoration-none">
+      <div class="card feature-card h-100 shadow-sm hover-lift">
+        <div class="card-body text-center">
+          <div class="feature-icon mb-3">📅</div>
+          <h3>Scheduler</h3>
+          <p class="text-muted">Plan your charging and export receipts.</p>
+        </div>
+      </div>
+    </a>
   </div>
-  <div class="col-md-4">
-    <h3>Go Green</h3>
-    <p>Track CO2 savings and impact.</p>
+  <div class="col-md-4 mb-4">
+    <a href="/go_green" class="text-decoration-none">
+      <div class="card feature-card h-100 shadow-sm hover-lift">
+        <div class="card-body text-center">
+          <div class="feature-icon mb-3">♻️</div>
+          <h3>Go Green</h3>
+          <p class="text-muted">Track CO2 savings and impact.</p>
+        </div>
+      </div>
+    </a>
   </div>
 </div>
 {% endblock %}

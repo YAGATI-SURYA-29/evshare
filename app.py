@@ -35,4 +35,5 @@ def login():
     return render_template('login.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Listen on all interfaces so the site is reachable on the LAN
+    app.run(debug=True, host='0.0.0.0')

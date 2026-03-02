@@ -1,9 +1,65 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Fast Charging Guide</h2>
-<ul>
-  <li>Prefer CCS or CHAdeMO for rapid top-ups.</li>
-  <li>Monitor battery temperature.</li>
-  <li>Plug safely and follow station instructions.</li>
-</ul>
+<div class="p-4 mb-4 bg-warning bg-opacity-10 rounded-3">
+  <h1 class="mb-3">⚡ Fast Charging Guide</h1>
+  <p class="lead">Learn the best practices for rapid EV charging.</p>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Choose the Right Charger</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item border-0">✓ CCS (Combined Charging System) — fastest option</li>
+          <li class="list-group-item border-0">✓ CHAdeMO — Japanese standard, widely compatible</li>
+          <li class="list-group-item border-0">✓ Type 2 — European standard AC charger</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Temperature Management</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item border-0">🌡️ Monitor battery temperature during charge</li>
+          <li class="list-group-item border-0">❄️ Avoid charging in extreme heat</li>
+          <li class="list-group-item border-0">⏸️ If battery overheats, pause charging</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Safety Precautions</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item border-0">🔌 Always use certified chargers</li>
+          <li class="list-group-item border-0">⚠️ Follow station instructions carefully</li>
+          <li class="list-group-item border-0">🚫 Never unplug while charging is active</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Pro Tips</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item border-0">⏱️ Charge during off-peak hours for savings</li>
+          <li class="list-group-item border-0">📍 Plan routes near fast-charging networks</li>
+          <li class="list-group-item border-0">💡 80% is usually optimal for battery health</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-info mt-4">
+  <strong>💡 Tip:</strong> Most modern EVs reach 80% charge in 20–30 minutes with DC fast charging. Charging beyond 80% slows down significantly to protect battery longevity.
+</div>
 {% endblock %}

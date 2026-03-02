@@ -6,6 +6,13 @@ function initEvshareMap(containerId){
   }
   const map=L.map(containerId).setView([13.1005,80.0996],13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
-  // example marker
-  L.marker([13.1005,80.0996]).addTo(map).bindPopup('Avadi Station');
+  // sample station data
+  const stations = [
+    {name:'Avadi C1',coords:[13.1005,80.0996]},
+    {name:'Avadi C2',coords:[13.102,80.095]},
+    {name:'Avadi East',coords:[13.097,80.102]}
+  ];
+  stations.forEach(s=>{
+    L.marker(s.coords).addTo(map).bindPopup(s.name);
+  });
 }
