@@ -1,0 +1,35 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches:
+      - frontend
+  pull_request:
+    branches:
+      - frontend
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 app.py --count --select=E9,F63,F7,F82 --show-source --statistics || true
+
+      - name: Deploy to Render
+        run: |
+          echo "Deploy step - configure with your Render deploy hook"
+          # Example: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
