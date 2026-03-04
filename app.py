@@ -24,7 +24,7 @@ def index():
 def scheduler():
     return render_template('scheduler.html')
 
-@app.route('/find')
+@app.route('/find_station')
 def find():
     return render_template('find_station.html')
 
