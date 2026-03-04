@@ -1,10 +1,134 @@
 {% extends "base.html" %}
+{% block title %}Track Charging - EVShare{% endblock %}
+
 {% block content %}
-<h2>Charging Status</h2>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 id="charge-percent">Charge: 42%</h5>
-    <div class="progress"><div class="progress-bar" style="width:42%"></div></div>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <h1 class="display-5 fw-bold mb-3">🔌 Charging Status</h1>
+      <p class="lead text-muted">Real-time monitoring for apartment stations</p>
+    </div>
+
+    <!-- Main Status Card -->
+    <div class="card shadow-lg border-0 mb-4">
+      <div class="card-header bg-gradient text-white py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <h3 class="mb-0">
+          <i class="fas fa-bolt me-2"></i>Live Session
+        </h3>
+      </div>
+      <div class="card-body p-5">
+        <!-- Battery Icon + Percent -->
+        <div class="text-center mb-4">
+          <div class="battery-icon mb-3" style="font-size: 4rem;">🔋</div>
+          <h2 id="charge-percent" class="display-3 fw-bold mb-1">42%</h2>
+          <p class="text-muted lead mb-0">Tata Nexon EV • Avadi Station 1</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress mb-4" style="height: 2rem;">
+          <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+               id="progress-bar" 
+               style="width: 42%" 
+               role="progressbar" 
+               aria-valuenow="42" 
+               aria-valuemin="0" 
+               aria-valuemax="100">
+            <span class="fs-5 fw-bold">42%</span>
+          </div>
+        </div>
+
+        <!-- Status Details -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3">
+            <div class="text-center">
+              <div class="h3 text-success mb-1" id="power">7.2 kW</div>
+              <small class="text-muted">Power</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <div class="h3 text-primary mb-1" id="time-left">2h 14m</div>
+              <small class="text-muted">Remaining</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <div class="h3 text-info mb-1" id="cost">₹28.80</div>
+              <small class="text-muted">Cost</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <div class="h3 text-warning mb-1" id="eta">01:46 AM</div>
+              <small class="text-muted">Complete</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="text-center">
+          <button class="btn btn-outline-success btn-lg me-3" onclick="pauseCharging()">
+            <i class="fas fa-pause me-2"></i>Pause
+          </button>
+          <button class="btn btn-success btn-lg" onclick="unlock()">
+            <i class="fas fa-unlock me-2"></i>Unlock
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Sessions -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <h6 class="mb-0">Recent Sessions</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Station</th>
+                <th>kWh</th>
+                <th>Cost</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>22:15 - 01:46</td>
+                <td>Avadi Station 1</td>
+                <td>14.4</td>
+                <td>₹57.60</td>
+                <td><span class="badge bg-success">Complete</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+// Simulate live updates every 30s
+setInterval(updateChargingStatus, 30000);
+
+function updateChargingStatus() {
+  const percent = 42 + Math.floor(Math.random() * 3); // Simulate progress
+  document.getElementById('charge-percent').textContent = percent + '%';
+  document.getElementById('progress-bar').style.width = percent + '%';
+  document.getElementById('progress-bar').setAttribute('aria-valuenow', percent);
+  document.getElementById('progress-bar').querySelector('span').textContent = percent + '%';
+}
+
+function pauseCharging() {
+  alert('Charging paused. Resume from app.');
+}
+
+function unlock() {
+  alert('Socket unlocked. Plug can be removed.');
+}
+</script>
 {% endblock %}
