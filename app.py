@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template, request
+import os
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
