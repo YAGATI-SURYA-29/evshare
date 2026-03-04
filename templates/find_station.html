@@ -1,9 +1,82 @@
 {% extends "base.html" %}
+{% block title %}Find EV Stations - EVShare{% endblock %}
+
 {% block content %}
-<h2>Find a Station</h2>
-<div id="map" style="height:70vh; width:100%;"></div>
+<!-- Hero Header -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="d-flex align-items-center mb-3">
+      <div class="bg-success p-3 rounded-circle me-3 shadow">
+        <i class="fas fa-map-marker-alt text-white fs-3"></i>
+      </div>
+      <div>
+        <h1 class="mb-1 fw-bold">Find Charging Stations</h1>
+        <p class="lead text-muted mb-0">Avadi & Ambattur - 5km radius</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Map Container -->
+<div class="position-relative rounded-4 shadow-lg overflow-hidden mb-4">
+  <div id="map" style="height: 70vh; width: 100%; border-radius: inherit;"></div>
+  
+  <!-- Loading Overlay -->
+  <div id="map-loading" class="position-absolute top-50 start-50 translate-middle bg-light bg-opacity-75 rounded-3 p-3 d-none">
+    <div class="spinner-border text-success me-2" role="status"></div>
+    Loading stations...
+  </div>
+</div>
+
+<!-- Station Counter (Dynamic) -->
+<div id="station-count" class="alert alert-success d-none mb-4">
+  <i class="fas fa-map-marker-alt me-2"></i>
+  <span id="count-text">Loading...</span> stations nearby
+</div>
+
+<!-- Controls -->
+<div class="row g-3 mb-4">
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-location-dot"></i></span>
+      <input type="text" id="location-input" class="form-control" placeholder="Enter lat,lng (13.112,80.223)" value="13.112,80.223">
+      <button class="btn btn-success" onclick="findNearbyStations()">
+        <i class="fas fa-search me-1"></i>Search
+      </button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-check form-switch float-end">
+      <input class="form-check-input" type="checkbox" id="gps-toggle" checked>
+      <label class="form-check-label" for="gps-toggle">Auto-detect location</label>
+    </div>
+  </div>
+</div>
+
 <script>
-  // leaflet initialization handled in static/js/leaflet.js
+// Wait for map to initialize
+document.addEventListener('DOMContentLoaded', function() {
   initEvshareMap('map');
+  
+  // Auto-load Avadi stations
+  loadStations();
+});
+
+// Load stations from API
+function loadStations() {
+  fetch('/api/stations')
+    .then(response => response.json())
+    .then(data => {
+      addStationsToMap(data);
+      document.getElementById('station-count').classList.remove('d-none');
+      document.getElementById('count-text').textContent = data.length;
+    })
+    .catch(error => console.error('Error:', error));
+}
 </script>
+
+<style>
+#map { min-height: 500px; }
+@media (max-width: 768px) { #map { height: 60vh !important; } }
+</style>
 {% endblock %}
