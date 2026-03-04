@@ -1,21 +1,32 @@
 from flask import Flask, jsonify, render_template, request
-from config import STATIONS, TARIFFS  # Your data files
 import os
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
-# HTML PAGES (Keep yours)
+# ✅ DATA DIRECTLY IN APP.PY (No config needed!)
+STATIONS = [
+    {"name": "Avadi Apartment Station 1", "lat": 13.112, "lng": 80.223, "capacity": 50},
+    {"name": "Ambattur Station", "lat": 13.115, "lng": 80.218, "capacity": 30}
+]
+
+TARIFFS = {
+    "peak": {"22": 8.0, "23": 8.0},
+    "offpeak": {"6": 4.5, "7": 4.5},
+    "solar": {"12": 2.5}
+}
+
+# HTML PAGES
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/find')
-def find():
-    return render_template('find_station.html')
-
 @app.route('/scheduler')
 def scheduler():
     return render_template('scheduler.html')
+
+@app.route('/find')
+def find():
+    return render_template('find_station.html')
 
 @app.route('/track')
 def track():
@@ -37,7 +48,7 @@ def signup():
 def login():
     return render_template('login.html')
 
-# 🔥 ADD THESE 5 API ROUTES:
+# 🔥 API ROUTES
 @app.route('/health')
 def health():
     return jsonify({"status": "ok", "version": "1.0"})
@@ -53,21 +64,12 @@ def tariffs():
 @app.route('/api/schedule', methods=['POST'])
 def schedule():
     data = request.json or {}
-    soc = data.get('soc', 20)
-    deadline = data.get('deadline', '23:00')
-    model = data.get('model', 'Tata Nexon')
-    
-    # Mock optimal schedule (TNERC tariffs)
-    result = {
+    return jsonify({
         "success": True,
-        "schedule": [
-            {"hour": 22, "kw": 7.2, "cost": 28.80},
-            {"hour": 23, "kw": 7.2, "cost": 28.80}
-        ],
+        "schedule": [{"hour": 22, "kw": 7.2, "cost": 28.80}],
         "total_cost": 57.60,
         "savings": "50% vs peak"
-    }
-    return jsonify(result)
+    })
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
